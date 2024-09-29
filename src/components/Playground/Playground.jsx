@@ -2,23 +2,42 @@ import './Playground.css';
 import {useState} from 'react';
 
 export default function Playground() {
-	const [inputText, setInputText] = useState('');
-	const [savedText, setSavedText] = useState('');
+	const data = [
+		{
+			'name': 'Hello'
+		},
+		{
+			'name': 'World'
+		},
+		{
+			'name': 'Test'
+		}
+	];
+	const [inputData, setInputData] = useState(data);
 
-	function handleInputChange(e) {
-		setInputText(e.target.value);
-	}
-	function handleSave() {
-		setSavedText(inputText);
-	}
+	function filterData(e) {
+		const searchParam = e.target.value;
+		console.log(searchParam);
+		if (searchParam) {
+			const filteredData = inputData.filter((el) => el.name.includes(searchParam));
+			setInputData(filteredData);
+		} else {
+			setInputData(data);
+		}
 
+	}
 	return (
 		<div className="playground">
-			<input type="text" onKeyDown={(e) => e.key==='Enter' && handleSave()} onChange={(e) => handleInputChange(e)} value={inputText} />
-			<button type="submit" onClick={handleSave}>Сохранить</button>
-			<div className="result">
-				{savedText}
-			</div>
+			<input type="text" onChange={(e) => filterData(e)}/>
+			{
+				inputData.map((item, index) => {
+					return (
+						<div key={index}>
+							{item.name}
+						</div>
+					);
+				})
+			}
 		</div>
 	);
 }
