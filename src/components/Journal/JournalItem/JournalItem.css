@@ -1,0 +1,36 @@
+.journal-item {
+    display: flex;
+    flex-direction: column;
+    border-radius: 3px;
+    padding: 20px;
+    gap: 10px;
+    background-color: rgba(242, 242, 242, 0.03);
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.journal-item__title {
+    font-weight: 600;
+}
+
+.journal-item:hover,
+.journal-item.active {
+    background-color: rgba(242, 242, 242, 0.1);
+}
+
+.journal-item__info {
+    display: flex;
+    gap: 10px;
+}
+
+.journal-item__info .info-date {
+    opacity: 0.4;
+}
+
+.journal-item__info .info-preview {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 1;
+    opacity: 0.6;
+}

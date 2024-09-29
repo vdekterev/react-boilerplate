@@ -1,14 +1,15 @@
 import './App.css';
-import Button from '@components/Button.jsx';
-
-function App() {
+import JournalBlock from '@components/Journal/JournalBlock/JournalBlock.jsx';
+import Header from '@components/Header/Header.jsx';
+import Playground from '@components/Playground/Playground.jsx';
+export default function App() {
 	return (
 		<>
-			<h1>Wassup</h1>
-			<Button/>
+			<Header/>
+			<div id="content">
+				<JournalBlock/>
+				<Playground/>
+			</div>
 		</>
 	);
 }
-
-export default App;
-

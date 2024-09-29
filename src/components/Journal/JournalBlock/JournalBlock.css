@@ -1,0 +1,8 @@
+.journal-block {
+    height: 100vh;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 30px 20px 30px 20px;
+}

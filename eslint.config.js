@@ -35,8 +35,9 @@ export default [
 			],
 			'semi': ['error', 'always', {'omitLastInOneLineBlock': false}],
 			'comma-dangle': ['error', 'never'],
-			quotes: ['error', 'single'],
-			'indent': ['error', 'tab']
+			 quotes: ['error', 'single'],
+			'indent': ['error', 'tab'],
+			'react/prop-types': 'off'
 		}
 	}
 ];
