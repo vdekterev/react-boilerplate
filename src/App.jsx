@@ -6,32 +6,37 @@ import MainContent from '@components/MainContent/MainContent.jsx';
 import {useState} from 'react';
 
 export default function App() {
-	const date = new Date();
-	const data = [
-		{
-			title: 'Подготовка к обновлению курсов',
-			preview: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio?',
-			date: date.toLocaleDateString()
-		},
-		{
-			title: 'Поход тудым сюдым',
-			preview: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem, obcaecati?',
-			date: date.toLocaleDateString()
-		},
-		{
-			title: 'Первая заметка',
-			preview: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. At, corporis?',
-			date: date.toLocaleDateString()
-		}
+	const initialData = [
+		// {
+		// 	id: 1,
+		// 	title: 'Подготовка к обновлению курсов',
+		// 	text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio?',
+		// 	date: new Date()
+		// },
+		// {
+		// 	id: 2,
+		// 	title: 'Поход тудым сюдым',
+		// 	text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem, obcaecati?',
+		// 	date: new Date()
+		// },
+		// {
+		// 	id: 3,
+		// 	title: 'Первая заметка',
+		// 	text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. At, corporis?',
+		// 	date: new Date()
+		// }
 	];
-	const [journal, setJournal] = useState(data);
 
-	function submitForm(e) {
-		e.preventDefault();
-		const formData = new FormData(e.target);
-		const formProps = Object.fromEntries(formData);
-		journal.push(formProps);
-		setJournal([...journal]);
+	const [journal, setJournal] = useState(initialData);
+
+	function addItem(newItem) {
+		setJournal(journal => [...journal, {
+			id: Math.max(...journal.map(i => i.id)) + 1,
+			title: newItem.title,
+			tag: newItem.tag,
+			date: new Date(newItem.date),
+			text: newItem.text
+		}]);
 	}
 
 	return (
@@ -41,7 +46,7 @@ export default function App() {
 				<div id="content">
 					<JournalBlock journalItems={journal}/>
 					<MainContent>
-						<JournalForm onSubmit={(e) => submitForm(e)}/>
+						<JournalForm onSubmit={addItem}/>
 					</MainContent>
 				</div>
 			</main>

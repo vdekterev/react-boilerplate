@@ -3,10 +3,11 @@ import './JournalItem.css';
 export default function JournalItem({
 	title,
 	date,
-	preview,
+	text,
 	isActive,
 	onClick
 }) {
+	const formattedDate = new Intl.DateTimeFormat('ru-RU').format(date);
 	return (
 		<div
 			className={`journal-item ${isActive ? 'active' : ''}`}
@@ -16,8 +17,8 @@ export default function JournalItem({
 				{title}
 			</div>
 			<div className="journal-item__info">
-				<div className="info-date">{date}</div>
-				<div className="info-preview">{preview}</div>
+				<div className="info-date">{formattedDate}</div>
+				<div className="info-preview">{text}</div>
 			</div>
 		</div>
 	);

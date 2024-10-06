@@ -1,22 +1,22 @@
 import './JournalForm.css';
 import Button from '@components/Button/Button.jsx';
-import {useState} from 'react';
+
 
 export default function JournalForm({ onSubmit }) {
-	const [inputData, setInputData] = useState('');
+	function submitForm(e) {
+		e.preventDefault();
+		const formData = new FormData(e.target);
+		const formProps = Object.fromEntries(formData);
+		formProps.date = formProps.date ? formProps.date : Date.now();
+		onSubmit(formProps);
+	}
 
 	return (
-		<form id="journal-form" onSubmit={onSubmit}>
-			<input
-				type="text"
-				value={inputData}
-				onChange={(e) => setInputData(e.target.value)}
-				name="title"
-				placeholder="Заголовок"
-			/>
-			<input type="date" name="date"/>
+		<form id="journal-form" onSubmit={(e) => submitForm(e)}>
+			<input type="text" name="title" placeholder="Заголовок"/>
+			<input type="date" name="date" defaultValue={Date.now()} />
 			<input type="text" name="tag"  placeholder="Тег" />
-			<textarea name="preview" id="" cols="30" rows="10" placeholder="Воспоминание"/>
+			<textarea name="text" id="" cols="30" rows="10" placeholder="Воспоминание"/>
 			<Button text="Сохранить"/>
 		</form>
 	);
