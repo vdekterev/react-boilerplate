@@ -7,31 +7,31 @@ import {useState} from 'react';
 
 export default function App() {
 	const initialData = [
-		// {
-		// 	id: 1,
-		// 	title: 'Подготовка к обновлению курсов',
-		// 	text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio?',
-		// 	date: new Date()
-		// },
-		// {
-		// 	id: 2,
-		// 	title: 'Поход тудым сюдым',
-		// 	text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem, obcaecati?',
-		// 	date: new Date()
-		// },
-		// {
-		// 	id: 3,
-		// 	title: 'Первая заметка',
-		// 	text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. At, corporis?',
-		// 	date: new Date()
-		// }
+		{
+			id: 1,
+			title: 'Подготовка к обновлению курсов',
+			text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio?',
+			date: new Date()
+		},
+		{
+			id: 2,
+			title: 'Поход туда сюда',
+			text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem, obcaecati?',
+			date: new Date()
+		},
+		{
+			id: 3,
+			title: 'Первая заметка',
+			text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. At, corporis?',
+			date: new Date()
+		}
 	];
 
 	const [journal, setJournal] = useState(initialData);
 
 	function addItem(newItem) {
 		setJournal(journal => [...journal, {
-			id: Math.max(...journal.map(i => i.id)) + 1,
+			id: journal.length > 0 ? Math.max(...journal.map(i => i.id)) + 1 : 1,
 			title: newItem.title,
 			tag: newItem.tag,
 			date: new Date(newItem.date),
